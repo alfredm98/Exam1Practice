@@ -119,6 +119,7 @@ def problem2a(circle, rectangle, window):
     end = rectangle.get_lower_left_corner()
     line = rg.Line(start, end)
     line.attach_to(window)
+    window.render()
     window.continue_on_mouse_click()
 
     circle.fill_color = rectangle.outline_color
@@ -187,7 +188,7 @@ def problem2b(rect, n, delta, win):
       :type win:    rg.RoseWindow
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #          Tests have been written for you (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
@@ -195,6 +196,14 @@ def problem2b(rect, n, delta, win):
     #    DIFFICULTY:      7
     #    TIME ESTIMATE:   15 to 25 minutes.
     # ------------------------------------------------------------------
+    rect.attach_to(win)
+    win.render()
+    for k in range(1, n):
+        upperright = rg.Point(rect.get_upper_right_corner().x + k*delta, rect.get_upper_right_corner().y - k*delta)
+        bottomleft = rg.Point(rect.get_lower_left_corner().x - k*delta, rect.get_lower_left_corner().y + k*delta)
+        rect2 = rg.Rectangle(upperright, bottomleft)
+        rect2.attach_to(win)
+    win.render()
 
 
 # ----------------------------------------------------------------------
